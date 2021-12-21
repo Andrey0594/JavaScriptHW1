@@ -1,0 +1,28 @@
+<html lang="en">
+    <head>
+            <meta charset="UTF-8">
+                <title>Document</title>
+    </head>
+            <body>
+                <script>
+		  			function GetSign(value)
+		  			{
+		  				let a=value%100;
+		  				let first=parseInt(a/10);
+		  				let second=a%10;
+		  				if(first!=1 && second==1)
+		  					return "рубль";
+		  				else if(first!=1 && (second>1 && second<=4))
+		  					return "рубля";
+		  				else 
+		  					return "рублей";
+		  			}
+
+		  			let countMoney=Number(prompt("Введите сумму:"));
+		  			if(isNaN(countMoney))
+		  				alert("Вы ввели не число");
+		  			else
+		  				alert("Ваша сумма в "+countMoney+" "+GetSign(countMoney)+" успешно зачислена.")
+                </script>
+            </body>
+</html>
