@@ -1,13 +1,42 @@
 <html lang="en">
-    <head>
-            <meta charset="UTF-8">
-                <title>Document</title>
-    </head>
-            <body>
-                <script>
-		   let celsium=Number(prompt('Imput celsium temperature:'));
-		   let farengeit=(9/5)*celsium+32; 
-                   alert(farengeit);               
-                </script>
-            </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        class NumberClass{
+            constructor (single, double,triple){
+                this.single=single;
+                this.double=double;
+                this.triple=triple;
+            }
+              
+        }
+
+        function GetNumberObject(number)
+        {
+            temp=-1;
+            if(Number(number))
+                temp=+number;
+
+            if(temp>=0 && temp<=999)
+            {
+                let obj=new NumberClass(temp%10,parseInt(temp/10)%10,parseInt(temp/100));
+                return obj;
+            }                 
+            else
+            {
+                console.log("Вы ввели не правильное значение");
+                return null;
+            }            
+        }	
+
+        var number = prompt("Введите число [0:999]:");
+        let obj=GetNumberObject(number);
+        console.log(obj);
+
+    </script>
+</body>
 </html>

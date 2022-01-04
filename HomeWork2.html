@@ -1,13 +1,39 @@
 <html lang="en">
-    <head>
-            <meta charset="UTF-8">
-                <title>Document</title>
-    </head>
-            <body>
-                <script>
-		   let name='Vasiliy';
-		   let admin=name;
-                   console.log(admin);               
-                </script>
-            </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+       function Product(name, price){
+            this.name=name;
+            this.price=price;
+       }
+       Product.prototype.make25PercentDiscount=function(){
+            this.price=this.price-this.price*0.25;
+       }
+
+       let product=new Product("Товар 1", 100);
+       product.make25PercentDiscount();
+       console.log(product);
+
+
+
+       class ProductClass{
+            constructor (name, price){
+                this.name=name;
+                this.price=price;
+            }
+            make25PercentDiscount(){
+                this.price=this.price-this.price*0.25;
+            }
+
+       }
+       let productObj=new ProductClass("Товар 2", 200);
+       productObj.make25PercentDiscount();
+       console.log(productObj);
+
+    </script>
+</body>
 </html>
