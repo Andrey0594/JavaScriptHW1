@@ -1,35 +1,80 @@
 <html lang="en">
-    <head>
-            <meta charset="UTF-8">
-                <title>Document</title>
-    </head>
-            <body>
-                <script>
-		   console.log(10 + 10 + "10"); /*первые два операнда числа поэтому суммируем будет 20. Дальше плюс строка потому и 20 станет строкой. проводим конкатенацию будет 2010"*/
-		   /*
-			1. 10+10=20;
-			2. 20+"10"="2010"
-		   */
-             	   console.log(10 + "10" + 10); /*число плюс строка проводим конкатенацию, потом строка плюс число также конкатенация. Итого 101010*/
-		   /*
-			1. 10+"10"="1010";
-			2. "1010"+10="101010";
-		   */
-		   console.log(10 + 10 + +"10");/* +"" приведение не числа в число. Значит все три числа надо сложить. будет 30*/
-		   /*
-			1. +"10"=10;
-			2. 10+10+10=30;			
-		   */
-	           console.log(10 / -"");/* так как операция / выполняется только с числами то -""=-0. делить на ноль нельзя, получится -infinity*/
-		   /*
-			так как операция деления то -""=-0;
-			10/-0=-infinity
-		   */
-		   console.log(10/ +"2,5");/* +"2,5" пытается преобразовать в число.2,5-это не число. ответ NaN */
-		   /*
-			+"2,5"=NaN
-			10/NaN=NaN
-		   */
-                </script>
-            </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//es 5
+        function Post(author, text, date){
+            this.author=author;
+            this.text=text;
+            this.date=date;            
+        }
+        Post.prototype.Edit=function(text){
+            this.text=text;            
+        }
+
+        function AttachedPost(author, text, date){
+            Post.call(this, author,text, date);
+            this.highlighted=false;
+        }
+        AttachedPost.prototype=Object.create(Post.prototype);
+        AttachedPost.prototype.constructor=AttachedPost;
+        AttachedPost.prototype.makeTextHighlighted=function(){
+            this.highlighted=true;
+        }
+        let post1=new Post("Val", "Hi", "22-12-2021");
+        post1.Edit("Hi all");
+        console.log(post1);
+        let post2=new AttachedPost("Val1", "Hello", "23-12-2021");
+        post2.Edit("Hello all");
+        post2.makeTextHighlighted();
+        console.log(post2);
+
+
+//es6
+
+
+
+
+        class PostClass{
+            constructor (author, text, date){
+                this.author=author;
+                this.text=text;
+                this.date=date;            
+            }
+            Edit(text){
+                this.text=text;
+            }
+        }
+
+        class AttachedPostClass extends PostClass{
+            constructor (author, text, date){
+                super(author, text, date);
+                this.highlighted=false;
+            }
+            MakeTextHighlighted(){
+                this.highlighted=true;
+            }
+        }
+
+        let post1=new PostClass("Val", "Hi", "22-12-2021");
+        post1.Edit("Hi all");
+        console.log(post1);
+        let post2=new AttachedPostClass("Val1", "Hello", "23-12-2021");
+        post2.Edit("Hello all");
+        post2.MakeTextHighlighted();
+        console.log(post2);
+
+
+
+       
+
+
+
+       
+
+    </script>
+</body>
 </html>
